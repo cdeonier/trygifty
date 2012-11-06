@@ -1,0 +1,15 @@
+Gifty::Application.routes.draw do
+  resources :vendors do
+    resources :items
+  end
+  
+  match 'store/:biz_id' => 'vendors#store', :via => :get, :as => "store"
+  
+  resources :transactions, :only => [:index, :destroy]
+  match 'checkout' => 'transactions#checkout', :via => :post, :as => "checkout"
+  match 'confirmation' => 'transactions#confirmation', :via => :post, :as => "confirmation"
+  
+  resources :items do
+    resources :transaction
+  end
+end

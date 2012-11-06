@@ -1,0 +1,60 @@
+<% content_for(:page_javascript) do %>
+  <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+  <script type="text/javascript">
+    Stripe.setPublishableKey('pk_test_lf4qzbsqlthLUkETn1snjJIN');
+  </script>
+  <% javascript_include_tag "stripe.js" %>
+<% end %>
+
+<h1>Checkout</h1>
+
+<span class="payment-errors"></span>
+<%= form_for([@item, @transaction], :url => confirmation_path, :html => {:id => 'payment-form' }) do |f| %>
+	<%= f.label :email %>
+	<%= f.text_field :email %>
+	
+	<%= f.hidden_field :item_id %>	
+	
+	<div class="form-row">
+    <label>Name</label>
+    <input type="text" size="20" autocomplete="off" class="card-name"/>
+  </div>
+	<div class="form-row">
+    <label>Address One</label>
+    <input type="text" size="20" autocomplete="off" class="card-address-1"/>
+  </div>
+	<div class="form-row">
+    <label>Address Two</label>
+    <input type="text" size="20" autocomplete="off" class="card-address-2"/>
+  </div>
+	<div class="form-row">
+    <label>City</label>
+    <input type="text" size="20" autocomplete="off" class="card-city"/>
+  </div>
+	<div class="form-row">
+    <label>State</label>
+    <input type="text" size="20" autocomplete="off" class="card-state"/>
+  </div>
+	<div class="form-row">
+    <label>ZIP Code</label>
+    <input type="text" size="20" autocomplete="off" class="card-zip"/>
+  </div>
+	<div class="form-row">
+    <label>Card Number</label>
+    <input type="text" size="20" autocomplete="off" class="card-number"/>
+  </div>
+  <div class="form-row">
+    <label>CVC</label>
+    <input type="text" size="4" autocomplete="off" class="card-cvc"/>
+  </div>
+  <div class="form-row">
+    <label>Expiration (MM/YYYY)</label>
+    <input type="text" size="2" class="card-expiry-month"/>
+    <span> / </span>
+    <input type="text" size="4" class="card-expiry-year"/>
+  </div>
+	<button type="submit" class="submit-button">Submit Payment</button>
+	<!-- <div class="actions">
+	    <%= f.submit "Checkout", :class => "submit-button" %>
+	</div> -->
+<% end %>

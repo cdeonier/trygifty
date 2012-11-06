@@ -1,0 +1,25 @@
+<h1>Listing Items</h1>
+
+<table>
+  <tr>
+    <th>Amount</th>
+    <th>Vendor</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @items.each do |item| %>
+  <tr>
+    <td><%= item.amount %></td>
+    <td><%= item.vendor.name %></td>
+    <td><%= link_to 'Show', vendor_item_path(@vendor.id, item) %></td>
+    <td><%= link_to 'Edit', edit_vendor_item_path(@vendor.id, item) %></td>
+    <td><%= link_to 'Destroy', vendor_item_path(@vendor.id, item), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Item', new_vendor_item_path(@vendor) %> | <%= link_to 'Back', vendors_path %>

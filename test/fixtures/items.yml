@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  vendor: 
+  amount: 9.99
+
+two:
+  vendor: 
+  amount: 9.99

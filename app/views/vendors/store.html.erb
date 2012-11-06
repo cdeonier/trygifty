@@ -1,0 +1,40 @@
+<div class="store-container">
+	<div id="vendor-info">
+		<h1><%= @vendor.name %> Gift Cards</h1>
+		<p class="header-description">Gift cards are emailed to you and stored in your iPhone.  Only available on iOS 6.</p>
+	</div>
+
+	<div id="cards">
+		<div class="row card-container">
+			<div class="card-container">
+				<div id="card-left" class="span3">
+					<img src="https://s3-us-west-1.amazonaws.com/gifty-public/vendor/b-street-boxing/b-street-boxing_25.png"/>
+					<div class="buy-button">
+						<%= form_tag checkout_path do %>
+							<%= hidden_field_tag "item_id", @items[0].id %>
+							<%= submit_tag "Buy", :class => "btn btn-success" %>
+						<% end %>
+					</div>
+				</div>
+				<div id="card-middle" class="span3">
+					<img src="https://s3-us-west-1.amazonaws.com/gifty-public/vendor/b-street-boxing/b-street-boxing_50.png"/>
+					<div class="buy-button">
+						<%= form_tag checkout_path do %>
+							<%= hidden_field_tag "item_id", @items[1].id %>
+							<%= submit_tag "Buy", :class => "btn btn-success" %>
+						<% end %>
+					</div>
+				</div>
+				<div id="card-right" class="span3">
+					<img src="https://s3-us-west-1.amazonaws.com/gifty-public/vendor/b-street-boxing/b-street-boxing_100.png"/>
+					<div class="buy-button">
+						<%= form_tag checkout_path do %>
+							<%= hidden_field_tag "item_id", @items[2].id %>
+							<%= submit_tag "Buy", :class => "btn btn-success" %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,10 @@
+<%= form_for([@vendor, @vendor.items.build]) do |f| %>
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

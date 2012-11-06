@@ -1,0 +1,81 @@
+@import "bootstrap";
+
+* {
+    font-weight: normal !important;
+}
+
+body {
+	//width: 810px;
+	font-family: 'Open Sans',Helvetica,Arial,sans-serif;
+}
+
+.header-outer {
+	background: none repeat scroll 0 0 #394755;
+}
+
+.header-inner {
+	width: 810px;
+	position:relative;
+}
+
+.brand {
+	padding: 10px 0px 10px 10px;
+	float: left;
+}
+
+.description {
+	color: white;
+	float: left;
+	padding: 30px 0px 10px 20px;
+}
+
+.header-description {
+	color: #394755;
+	padding: 10px 0px 20px 10px;
+}
+
+.buy-button {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.store-container {
+	width: 810px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#cards {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.card-container {
+	margin-left: 0px;
+	text-align: center;
+}
+
+.dropshadow {
+ -moz-box-shadow: 3px 3px 4px #999; /* Firefox */
+ -webkit-box-shadow: 3px 3px 4px #999; /* Safari/Chrome */
+ box-shadow: 3px 3px 4px #999; /* Opera and other CSS3 supporting browsers */
+ -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#999999')";/* IE 8 */
+}
+
+#card-left {
+	margin-left: 35px;
+}
+
+#card-middle {
+	margin-left: 40px;
+}
+
+#card-right {
+	margin-left: 40px;
+}
+
+#vendor-info h1 {
+	color: #394755;
+	font-size: 26px;
+	padding: 0px 0px 0px 10px;
+}
