@@ -1,3 +1,100 @@
 // Place all the styles related to the Transactions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.checkout-container {
+	width: 810px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#checkout-info {
+	margin: 0px 0px 0px 25px;
+}
+
+#cart {
+	margin: 20px 0px 0px 0px;
+	padding: 0px 0px 0px 15px;
+}
+
+#cart-header {
+	font-size:16px;
+	margin: 0px 0px 10px 0px;
+}
+
+#accepted-cards-row {
+	margin: 5px 0px 5px -20px;
+}
+
+#cards-image {
+	padding: 5px 0px 10px 0px;
+}
+
+.card-expiry-month {
+	width: 50px;
+}
+
+.card-expiry-year {
+	width: 80px;
+}
+
+.checkout-header {
+	color: #394755;
+	font-size: 26px;
+	padding: 0px 0px 5px 10px;
+	margin: 10px 0px 0px 0px;
+	border-bottom: 1px solid #EEE;
+}
+
+.checkout-box {
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border: 1px solid #D8D8D8;
+	margin: 20px 0px 0px 0px;
+}
+
+.checkout-box-header {
+	padding: 5px 15px 5px 15px;
+	-moz-border-radius-topleft: 10px;
+	border-top-left-radius: 10px;
+	-moz-border-radius-topright: 10px;
+	border-top-right-radius: 10px;
+	background: -moz-linear-gradient(#FAFAFA, #E0E0E0);
+	background: -webkit-linear-gradient(#FAFAFA, #E0E0E0);
+	background: linear-gradient(#FAFAFA, #E0E0E0);
+	font-size: 16px;
+	text-shadow: 0 1px 0 white;
+	border-bottom: 1px solid #D8D8D8;
+}
+
+.information-box-container {
+	padding: 5px 5px 5px 5px;
+}
+
+.information-box {
+	padding: 5px 5px 5px 5px;
+	font-size: 12px;
+	border: 1px solid #D8D8D8;
+	background: #FAFAFA;
+	margin: 20px 0px 0px 0px;
+}
+
+.checkout-box-content {
+	margin: 10px 0px 0px 0px;
+	padding: 10px 0px 10px 0px;
+}
+
+.checkout-label {
+	text-align: right;
+	line-height: 30px;
+	margin: 0px 10px 0px 0px;
+}
+
+.submit-button {
+	text-align: center;
+	margin: 20px 0px 0px 42px;
+}
+
+.blue {
+	background: blue;
+}

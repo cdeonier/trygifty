@@ -6,55 +6,189 @@
   <% javascript_include_tag "stripe.js" %>
 <% end %>
 
-<h1>Checkout</h1>
-
-<span class="payment-errors"></span>
 <%= form_for([@item, @transaction], :url => confirmation_path, :html => {:id => 'payment-form' }) do |f| %>
-	<%= f.label :email %>
-	<%= f.text_field :email %>
-	
-	<%= f.hidden_field :item_id %>	
-	
-	<div class="form-row">
-    <label>Name</label>
-    <input type="text" size="20" autocomplete="off" class="card-name"/>
-  </div>
-	<div class="form-row">
-    <label>Address One</label>
-    <input type="text" size="20" autocomplete="off" class="card-address-1"/>
-  </div>
-	<div class="form-row">
-    <label>Address Two</label>
-    <input type="text" size="20" autocomplete="off" class="card-address-2"/>
-  </div>
-	<div class="form-row">
-    <label>City</label>
-    <input type="text" size="20" autocomplete="off" class="card-city"/>
-  </div>
-	<div class="form-row">
-    <label>State</label>
-    <input type="text" size="20" autocomplete="off" class="card-state"/>
-  </div>
-	<div class="form-row">
-    <label>ZIP Code</label>
-    <input type="text" size="20" autocomplete="off" class="card-zip"/>
-  </div>
-	<div class="form-row">
-    <label>Card Number</label>
-    <input type="text" size="20" autocomplete="off" class="card-number"/>
-  </div>
-  <div class="form-row">
-    <label>CVC</label>
-    <input type="text" size="4" autocomplete="off" class="card-cvc"/>
-  </div>
-  <div class="form-row">
-    <label>Expiration (MM/YYYY)</label>
-    <input type="text" size="2" class="card-expiry-month"/>
-    <span> / </span>
-    <input type="text" size="4" class="card-expiry-year"/>
-  </div>
-	<button type="submit" class="submit-button">Submit Payment</button>
-	<!-- <div class="actions">
-	    <%= f.submit "Checkout", :class => "submit-button" %>
-	</div> -->
+<%= f.hidden_field :item_id %>	
+<div class="checkout-container">
+	<h1 class="checkout-header">Checkout</h1>
+	<div class="row" style="margin: 0px 0px 0px 0px;">
+		<div id="checkout-info" class="span7">
+			<div class="row">
+				<div class="checkout-box dropshadow span7">
+					<div class="checkout-box-header">Card Recipient</div>
+					<div class="checkout-box-content">
+						<div class="row checkout-row">
+							<div class="span2">
+								<%= f.label :name, "Name: ", :class => "checkout-label" %>
+							</div>
+							<div class="span2">
+								<%= f.text_field :name %>
+							</div>
+						</div>
+						<div class="row checkout-row">
+							<div class="span2">
+								<%= f.label :email, "Email: ", :class => "checkout-label" %>
+							</div>
+							<div class="span2">
+								<%= f.text_field :email, :onchange => "emailChange(this)" %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="checkout-box dropshadow span7">
+					<div class="checkout-box-header">Payment Information</div>
+					<div class="checkout-box-content">
+						<div id="accepted-cards-row" class="row checkout-row">
+							<div class="span2">
+								<label class="checkout-label">Accepted Cards:</label>
+							</div>
+							<div class="span3">
+								<img id="cards-image" src="/assets/cards.png"/>
+							</div>
+						</div>
+						<div class="row checkout-row">
+							<div class="span2">
+								<label class="checkout-label">Name on Card:</label>
+							</div>
+							<div class="span2">
+								<input type="text" size="20" autocomplete="off" class="card-name"/>
+							</div>
+						</div>
+						<div class="row checkout-row">
+							<div class="span2">
+								<label class="checkout-label">Card Number:</label>
+							</div>
+							<div class="span2">
+								<input type="text" size="20" autocomplete="off" class="card-number"/>
+							</div>
+						</div>
+						<div class="row checkout-row">
+							<div class="span2">
+								<label class="checkout-label">Security Code:</label>
+							</div>
+							<div class="span2">
+								<input type="text" size="20" autocomplete="off" class="card-cvc"/>
+							</div>
+						</div>
+						<div class="row checkout-row">
+							<div class="span2">
+								<label class="checkout-label">Expiration Date:</label>
+							</div>
+							<div class="span3">
+								<select class="card-expiry-month">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+								</select>
+						    <span> / </span>
+						    <select class="card-expiry-year">
+									<option value="2012" selected="selected">2012</option>
+									<option value="2013">2013</option>
+									<option value="2014">2014</option>
+									<option value="2015">2015</option>
+									<option value="2016">2016</option>
+									<option value="2017">2017</option>
+									<option value="2018">2018</option>
+									<option value="2019">2019</option>
+									<option value="2020">2020</option>
+									<option value="2021">2021</option>
+									<option value="2022">2022</option>
+									<option value="2023">2023</option>
+									<option value="2024">2024</option>
+									<option value="2025">2025</option>
+									<option value="2026">2026</option>
+									<option value="2027">2027</option>
+									<option value="2028">2028</option>
+									<option value="2029">2029</option>
+									<option value="2030">2030</option>
+									<option value="2031">2031</option>
+									<option value="2032">2032</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="checkout-box dropshadow span7">
+					<div class="checkout-box-header">Billing Address</div>
+					<div class="checkout-box-content">
+						<div class="row checkout-row">
+							<div class="span2">
+								<%= f.label :sender_email, "Email: ", :class => "checkout-label" %>
+							</div>
+							<div class="span2">
+								<%= f.text_field :sender_email %>
+							</div>
+						</div>
+						<div class="row checkout-row">
+							<div class="span2">
+								<label class="checkout-label">Address Line 1:</label>
+							</div>
+							<div class="span2">
+								<input type="text" size="20" autocomplete="off" class="card-address-1"/>
+							</div>
+						</div>
+						<div class="row checkout-row">
+							<div class="span2">
+								<label class="checkout-label">Address Line 2:</label>
+							</div>
+							<div class="span2">
+								<input type="text" size="20" autocomplete="off" class="card-address-2"/>
+							</div>
+						</div>
+						<div class="row checkout-row">
+							<div class="span2">
+								<label class="checkout-label">City:</label>
+							</div>
+							<div class="span2">
+								<input type="text" size="20" autocomplete="off" class="card-city"/>
+							</div>
+						</div>
+						<div class="row checkout-row">
+							<div class="span2">
+								<label class="checkout-label">State:</label>
+							</div>
+							<div class="span2">
+								<input type="text" size="20" autocomplete="off" class="card-state"/>
+							</div>
+						</div>
+						<div class="row checkout-row">
+							<div class="span2">
+								<label class="checkout-label">Zip Code:</label>
+							</div>
+							<div class="span2">
+								<input type="text" size="20" autocomplete="off" class="card-zip"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="cart" class="span3">
+			<div id="cart-header">Your Card:</div>
+			<div>
+				<img src="https://s3-us-west-1.amazonaws.com/gifty-public/vendor/b-street-boxing/b-street-boxing_25.png"/>
+			</div>
+			<div class="information-box-container">
+				<div id="information-text" class="information-box dropshadow" style="font-weight:normal; display:none;">
+					A link to download the purchased gift card will be sent to: .
+				</div>
+			</div>
+			<div>
+				<button type="submit" class="submit-button btn btn-success">Submit Payment</button>
+			</div>
+		</div>
+	</div>
+</div>
 <% end %>

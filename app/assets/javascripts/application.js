@@ -13,3 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+function emailChange(email) {
+	if (email.value.length > 0) {
+		document.getElementById('information-text').style.display="block";
+    	document.getElementById('information-text').innerHTML = 'A link to download the purchased gift card will be sent to the email <div style="font-weight:bold;">' + email.value + '.</div>';
+	} else {
+		document.getElementById('information-text').style.display="none";
+	}
+};
+
+

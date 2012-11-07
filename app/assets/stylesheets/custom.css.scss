@@ -1,8 +1,8 @@
 @import "bootstrap";
 
-* {
-    font-weight: normal !important;
-}
+//* {
+//    font-weight: normal !important;
+//}
 
 body {
 	//width: 810px;
@@ -56,9 +56,9 @@ body {
 }
 
 .dropshadow {
- -moz-box-shadow: 3px 3px 4px #999; /* Firefox */
- -webkit-box-shadow: 3px 3px 4px #999; /* Safari/Chrome */
- box-shadow: 3px 3px 4px #999; /* Opera and other CSS3 supporting browsers */
+ -moz-box-shadow: 2px 2px 3px #999; /* Firefox */
+ -webkit-box-shadow: 2px 2px 3px #999; /* Safari/Chrome */
+ box-shadow: 2px 2px 3px #999; /* Opera and other CSS3 supporting browsers */
  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#999999')";/* IE 8 */
 }
 
