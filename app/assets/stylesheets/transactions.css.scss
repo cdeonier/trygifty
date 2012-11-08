@@ -79,6 +79,11 @@
 	margin: 20px 0px 0px 0px;
 }
 
+.help-text {
+	padding: 5px 10px 5px 10px;
+	margin: 20px 0px 0px 0px;
+}
+
 .checkout-box-content {
 	margin: 10px 0px 0px 0px;
 	padding: 10px 0px 10px 0px;
@@ -90,9 +95,23 @@
 	margin: 0px 10px 0px 0px;
 }
 
+.error-label {
+	line-height: 30px;
+	color: red;
+}
+
+.payment-errors {
+	color: red;
+	margin: 20px 0px 0px 10px;
+}
+
 .submit-button {
 	text-align: center;
 	margin: 20px 0px 0px 42px;
+}
+
+.card-cvc {
+	width: 30px;
 }
 
 .blue {

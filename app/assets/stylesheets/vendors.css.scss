@@ -1,3 +1,17 @@
 // Place all the styles related to the Vendors controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.card-amount {
+	position: absolute;
+	left: 0;
+	top: 0;
+	padding: 75px 0px 0px 25px;
+	color:white;
+	font-weight:normal;
+	font-size: 40px;
+}
+
+.card-image {
+	position:relative;
+}

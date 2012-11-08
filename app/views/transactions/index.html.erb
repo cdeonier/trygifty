@@ -3,14 +3,18 @@
 <table>
   <tr>
     <th>Amount</th>
-    <th>Email</th>
+		<th>Recipient Name</th>
+    <th>Recipient Email</th>
+		<th>Sender Email</th>
     <th></th>
   </tr>
 
 <% @transactions.each do |transaction| %>
   <tr>
     <td><%= transaction.item.amount %></td>
+		<td><%= transaction.name %></td>
     <td><%= transaction.email %></td>
+		<td><%= transaction.sender_email %></td>
     <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>

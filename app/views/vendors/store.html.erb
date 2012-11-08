@@ -7,8 +7,9 @@
 	<div id="cards">
 		<div class="row card-container">
 			<div class="card-container">
-				<div id="card-left" class="span3">
-					<img src="https://s3-us-west-1.amazonaws.com/gifty-public/vendor/b-street-boxing/b-street-boxing_25.png"/>
+				<div id="card-left" class="span3 card-image">
+					<img src="https://s3-us-west-1.amazonaws.com/gifty-public/vendor/b-street-boxing/b-street-boxing_template.jpg"/>
+					<div class="card-amount"><%= number_to_currency(@items[0].amount) %></div>
 					<div class="buy-button">
 						<%= form_tag checkout_path do %>
 							<%= hidden_field_tag "item_id", @items[0].id %>
@@ -16,8 +17,9 @@
 						<% end %>
 					</div>
 				</div>
-				<div id="card-middle" class="span3">
-					<img src="https://s3-us-west-1.amazonaws.com/gifty-public/vendor/b-street-boxing/b-street-boxing_50.png"/>
+				<div id="card-middle" class="span3 card-image">
+					<img src="https://s3-us-west-1.amazonaws.com/gifty-public/vendor/b-street-boxing/b-street-boxing_template.jpg"/>
+					<div class="card-amount"><%= number_to_currency(@items[1].amount) %></div>
 					<div class="buy-button">
 						<%= form_tag checkout_path do %>
 							<%= hidden_field_tag "item_id", @items[1].id %>
@@ -25,8 +27,9 @@
 						<% end %>
 					</div>
 				</div>
-				<div id="card-right" class="span3">
-					<img src="https://s3-us-west-1.amazonaws.com/gifty-public/vendor/b-street-boxing/b-street-boxing_100.png"/>
+				<div id="card-right" class="span3 card-image">
+					<img src="https://s3-us-west-1.amazonaws.com/gifty-public/vendor/b-street-boxing/b-street-boxing_template.jpg"/>
+					<div class="card-amount"><%= number_to_currency(@items[2].amount) %></div>
 					<div class="buy-button">
 						<%= form_tag checkout_path do %>
 							<%= hidden_field_tag "item_id", @items[2].id %>
