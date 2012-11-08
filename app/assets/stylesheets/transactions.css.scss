@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//Checkout
+
 .checkout-container {
 	width: 810px;
 	margin-left: auto;
@@ -116,4 +118,29 @@
 
 .blue {
 	background: blue;
+}
+
+//Confirmation
+
+.confirmation-container {
+	width: 810px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.confirmation-header {
+	color: #394755;
+	font-size: 26px;
+	padding: 0px 0px 5px 10px;
+	margin: 10px 0px 0px 0px;
+	border-bottom: 1px solid #EEE;
+}
+
+.confirmation-text {
+	margin: 20px 0px 0px 0px;
+	padding: 0px 0px 0px 10px;
+}
+
+.bold-text {
+	font-weight: bold;
 }

@@ -1,3 +1,13 @@
-<h1>Completed Order</h1>
-
-<%= @transaction.email %>
+<div class="confirmation-container">
+	<h1 class="confirmation-header">Order Confirmation</h1>
+	<div class="confirmation-text">		
+		Your order number is <b class="bold-text">#<%= @transaction.id %></b>. An email has been sent to <b class="bold-text"><%= @transaction.sender_email %></b> 
+		confirming your order. 
+	</div>
+	<div class="confirmation-text">		
+		A link to download the gift card is being sent to <b class="bold-text"><%= @transaction.email %></b>.
+	</div>
+	<div class="confirmation-text">
+		If you have any questions or require any help, please email us at <a href="mailto:help@trygifty.com">help@trygifty.com</a>.
+	</div>
+</div>

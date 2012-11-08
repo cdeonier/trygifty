@@ -24,7 +24,7 @@ class TransactionsController < ApplicationController
     # get the credit card details submitted by the form
     token = params[:stripeToken]
 
-    # create the charge on Stripe's servers - this will charge the user's card
+    #create the charge on Stripe's servers - this will charge the user's card
     charge = Stripe::Charge.create(
       :amount => (@transaction.item.amount * 100).to_i,
       :currency => "usd",

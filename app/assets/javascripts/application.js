@@ -24,6 +24,7 @@ function emailChange(email) {
 };
 
 function checkForm() {
+	//Clear errors
 	$(".checkout-row").each(function(i) {
 		$(this).find('.error-label').remove();
 	});
@@ -34,17 +35,36 @@ function checkForm() {
 	errorDiv.innerHTML = 'Required.';
 	errorDiv.setAttribute("class", "error-label span1");
 	
+	var emailFilled = true;
 	if ($(".recipient-email").val().length == 0) {
 		$(".recipient-email").parent().parent().append(errorDiv.cloneNode(true));
+		emailFilled = false;
 		didPass = false;
 	}
 	
-	if(didPass) {
+	if(emailFilled) {
 		if(!isValidEmailAddress($(".recipient-email").val())) {
 			var invalidDiv = document.createElement('div');
 			invalidDiv.innerHTML = 'Invalid.';
 			invalidDiv.setAttribute("class", "error-label span1");
 			$(".recipient-email").parent().parent().append(invalidDiv.cloneNode(true));
+			didPass = false;
+		}
+	}
+	
+	emailFilled = true;
+	if ($(".sender-email").val().length == 0) {
+		$(".sender-email").parent().parent().append(errorDiv.cloneNode(true));
+		emailFilled = false;
+		didPass = false;
+	}
+	
+	if(emailFilled) {
+		if(!isValidEmailAddress($(".sender-email").val())) {
+			var invalidDiv = document.createElement('div');
+			invalidDiv.innerHTML = 'Invalid.';
+			invalidDiv.setAttribute("class", "error-label span1");
+			$(".sender-email").parent().parent().append(invalidDiv.cloneNode(true));
 			didPass = false;
 		}
 	}
