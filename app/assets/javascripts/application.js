@@ -24,6 +24,10 @@ function emailChange(email) {
 };
 
 function checkForm() {
+	$(".checkout-row").each(function(i) {
+		$(this).find('.error-label').remove();
+	});
+	
 	var didPass = true;
 	
 	var errorDiv = document.createElement('div');
