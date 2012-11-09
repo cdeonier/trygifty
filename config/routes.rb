@@ -9,6 +9,8 @@ Gifty::Application.routes.draw do
   match 'checkout' => 'transactions#checkout', :via => :post, :as => "checkout"
   match 'confirmation' => 'transactions#confirmation', :via => :post, :as => "confirmation"
   
+  resources :passes, :only => [:index, :destroy]
+  
   resources :items do
     resources :transaction
   end

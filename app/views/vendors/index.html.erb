@@ -4,6 +4,10 @@
   <tr>
     <th>Name</th>
     <th>Biz Id</th>
+		<th>Latitude</th>
+		<th>Longitude</th>
+		<th>ForegroundColor</th>
+		<th>BackgroundColor</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,6 +18,10 @@
   <tr>
     <td><%= vendor.name %></td>
     <td><%= vendor.biz_id %></td>
+		<td><%= vendor.latitude %></td>
+		<td><%= vendor.longitude %></td>
+		<td><%= vendor.foreground_color %></td>
+		<td><%= vendor.background_color %></td>
     <td><%= link_to 'Show', vendor %></td>
     <td><%= link_to 'Edit', edit_vendor_path(vendor) %></td>
     <td><%= link_to 'Destroy', vendor, method: :delete, data: { confirm: 'Are you sure?' } %></td>

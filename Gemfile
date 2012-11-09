@@ -8,6 +8,8 @@ gem 'bootstrap-sass'
 
 gem 'pg'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'aws-s3', :require => 'aws/s3'
+gem 'rubyzip', :require => 'zip/zip'
 
 # Gems used only for assets and not required
 # in production environments by default.

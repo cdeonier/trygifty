@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121107084900) do
+ActiveRecord::Schema.define(:version => 20121109044332) do
 
   create_table "items", :force => true do |t|
     t.integer  "vendor_id"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20121107084900) do
     t.decimal  "amount"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "item_id"
   end
 
   add_index "passes", ["vendor_id"], :name => "index_passes_on_vendor_id"
@@ -39,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20121107084900) do
     t.datetime "updated_at",   :null => false
     t.string   "name"
     t.string   "sender_email"
+    t.integer  "pass_id"
   end
 
   add_index "transactions", ["item_id"], :name => "index_transactions_on_item_id"
@@ -46,8 +48,12 @@ ActiveRecord::Schema.define(:version => 20121107084900) do
   create_table "vendors", :force => true do |t|
     t.string   "biz_id"
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.string   "foreground_color"
+    t.string   "background_color"
   end
 
 end

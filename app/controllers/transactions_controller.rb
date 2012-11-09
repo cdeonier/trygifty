@@ -1,3 +1,5 @@
+require 'passbook'
+
 class TransactionsController < ApplicationController
   def index
     @transactions = Transaction.all
@@ -17,7 +19,19 @@ class TransactionsController < ApplicationController
 
   def confirmation
     @transaction = Transaction.new(params[:transaction])
-    puts "!!!!!! #{@transaction.item.amount}"
+    
+    item = @transaction.item
+    vendor = item.vendor
+    
+    pass = Pass.new
+    pass.amount = item.amount
+    pass.item_id = item.id
+    pass.vendor_id = vendor.id
+    pass.save
+    
+    Passbook.createPass(pass)
+    
+    @transaction.pass_id = pass.id
     
     Stripe.api_key = "sk_test_kgL3knoDKf72dGGiBqLC8qpo"
 
