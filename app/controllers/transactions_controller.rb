@@ -34,6 +34,7 @@ class TransactionsController < ApplicationController
     @transaction.pass_id = pass.id
     @transaction.save
     
+    OrderMailer.order_confirmation(pass).deliver
     OrderMailer.order_notification(pass).deliver
     
     Stripe.api_key = "sk_test_kgL3knoDKf72dGGiBqLC8qpo"
