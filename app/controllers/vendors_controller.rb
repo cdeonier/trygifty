@@ -51,6 +51,6 @@ class VendorsController < ApplicationController
   
   def facebook
     puts params[:page]
-    redirect_to store_path(1)
+    redirect_to store_path("b-street-boxing")
   end
 end
