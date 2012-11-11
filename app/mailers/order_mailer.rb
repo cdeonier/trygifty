@@ -13,6 +13,6 @@ class OrderMailer < ActionMailer::Base
     @pass = pass
     @vendor = Vendor.find(@pass.vendor_id)
     @transaction = @pass.transaction
-    mail(:to => "#{@transaction.sender_name} <#{@transaction.sender_email}>", :subject => "Your Order ##{@transaction.id}")
+    mail(:to => "#{@transaction.sender_name} <#{@transaction.sender_email}>", :subject => "Your Order (##{@transaction.id})")
   end
 end
