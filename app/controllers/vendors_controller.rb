@@ -52,17 +52,8 @@ class VendorsController < ApplicationController
   def facebook
     signed_request = params[:signed_request]
     @signed_request = decode_data(signed_request)
-    
-    puts "--> signed_request: #{@signed_request}"
-    
-    @page = @signed_request[:page]
-    
-    puts "--> page: #{@page}"
-    
+
     facebook_page_id = @signed_request["page"]["id"]
-    
-    puts "--> Facebook ID: #{facebook_page_id}"
-    
     vendor = Vendor.find_by_facebook_page_id(facebook_page_id)
     
     redirect_to store_path(vendor.biz_id)
