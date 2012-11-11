@@ -57,7 +57,7 @@ class VendorsController < ApplicationController
     
     @page = @signed_request[:page]
     
-    puts "--> signed_request: #{@page}"
+    puts "--> page: #{@page}"
     
     facebook_page_id = @signed_request["page"]["id"]
     
