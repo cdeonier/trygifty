@@ -74,6 +74,11 @@ function checkForm() {
 		didPass = false;
 	}
 	
+	if ($(".sender-name").val().length == 0) {
+		$(".sender-name").parent().parent().append(errorDiv.cloneNode(true));
+		didPass = false;
+	}
+	
 	if ($(".card-name").val().length == 0) {
 		$(".card-name").parent().parent().append(errorDiv.cloneNode(true));
 		didPass = false;

@@ -124,6 +124,7 @@ DEPENDENCIES
   bootstrap-sass
   coffee-rails (~> 3.2.1)
   jquery-rails
+  mail
   pg
   rails (= 3.2.8)
   rubyzip

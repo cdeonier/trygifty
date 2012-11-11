@@ -30,8 +30,11 @@ class TransactionsController < ApplicationController
     pass.save
     
     Passbook.createPass(pass)
-    
+
     @transaction.pass_id = pass.id
+    @transaction.save
+    
+    OrderMailer.order_notification(pass).deliver
     
     Stripe.api_key = "sk_test_kgL3knoDKf72dGGiBqLC8qpo"
 
@@ -46,6 +49,6 @@ class TransactionsController < ApplicationController
       :description => "#{@transaction.email} for #{@transaction.item.vendor.name}"
     )
     
-    @transaction.save
+    
   end
 end

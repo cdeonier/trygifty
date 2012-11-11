@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121109044332) do
+ActiveRecord::Schema.define(:version => 20121110005243) do
 
   create_table "items", :force => true do |t|
     t.integer  "vendor_id"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20121109044332) do
     t.string   "name"
     t.string   "sender_email"
     t.integer  "pass_id"
+    t.string   "sender_name"
   end
 
   add_index "transactions", ["item_id"], :name => "index_transactions_on_item_id"

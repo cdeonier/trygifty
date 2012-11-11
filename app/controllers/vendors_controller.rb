@@ -48,4 +48,9 @@ class VendorsController < ApplicationController
     @vendor = Vendor.find_by_biz_id(params[:biz_id])
     @items = @vendor.items
   end
+  
+  def facebook
+    puts params[:page]
+    redirect_to store_path(1)
+  end
 end

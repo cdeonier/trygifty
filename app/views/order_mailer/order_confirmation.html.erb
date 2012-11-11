@@ -1,0 +1,10 @@
+<p>Hi <%= @transaction.sender_name %>,</p>
+
+<p>We are confirming your <%= @vendor.name %> gift card purchase for <%= number_to_currency(@transaction.amount) %>.  Your order number is #<%= @transaction.id %>.</p>
+
+<p>We've sent the gift card to <%= @transaction.name %> at <%= @transaction.email %>.  If you require any further assistance, please don't hesitate to contact us.</p>
+
+<p>Sincerely,</p>
+
+<p>Christian Deonier</p>
+<p>Founder at Gifty</p>

@@ -10,6 +10,7 @@ gem 'pg'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'aws-s3', :require => 'aws/s3'
 gem 'rubyzip', :require => 'zip/zip'
+gem 'mail'
 
 # Gems used only for assets and not required
 # in production environments by default.

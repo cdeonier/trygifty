@@ -38,6 +38,29 @@
 			</div>
 			<div class="row">
 				<div class="checkout-box dropshadow span7">
+					<div class="checkout-box-header">From:</div>
+					<div class="checkout-box-content">
+						<div class="row checkout-row">
+							<div class="span2">
+								<%= f.label :sender_name, "Your Name: ", :class => "checkout-label" %>
+							</div>
+							<div class="span3">
+								<%= f.text_field :sender_name, :class => "sender-name" %>
+							</div>
+						</div>
+						<div class="row checkout-row">
+							<div class="span2">
+								<%= f.label :sender_email, "Your Email: ", :class => "checkout-label" %>
+							</div>
+							<div class="span3">
+								<%= f.text_field :sender_email, :class => "sender-email" %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="checkout-box dropshadow span7">
 					<div class="checkout-box-header">Payment Information</div>
 					<div class="checkout-box-content">
 						<div id="accepted-cards-row" class="row checkout-row">
@@ -124,14 +147,6 @@
 				<div class="checkout-box dropshadow span7">
 					<div class="checkout-box-header">Billing Address</div>
 					<div class="checkout-box-content">
-						<div class="row checkout-row">
-							<div class="span2">
-								<%= f.label :sender_email, "Email: ", :class => "checkout-label" %>
-							</div>
-							<div class="span3">
-								<%= f.text_field :sender_email, :class => "sender-email" %>
-							</div>
-						</div>
 						<div class="row checkout-row">
 							<div class="span2">
 								<label class="checkout-label">Address Line 1:</label>

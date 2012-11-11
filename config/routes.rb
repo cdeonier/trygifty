@@ -2,6 +2,7 @@ Gifty::Application.routes.draw do
   resources :vendors do
     resources :items
   end
+  match 'facebook' => 'vendors#facebook', :via => :post, :as => "facebook"
   
   match 'store/:biz_id' => 'vendors#store', :via => :get, :as => "store"
   
