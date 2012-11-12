@@ -1,4 +1,5 @@
-require 'passbook'
+require 'pass_creation_job'
+require 'stripe_charge_job'
 
 class TransactionsController < ApplicationController
   def index
@@ -18,6 +19,8 @@ class TransactionsController < ApplicationController
   end
 
   def confirmation
+    token = params[:stripeToken]
+    
     @transaction = Transaction.new(params[:transaction])
     
     item = @transaction.item
@@ -28,28 +31,13 @@ class TransactionsController < ApplicationController
     pass.item_id = item.id
     pass.vendor_id = vendor.id
     pass.save
-    
-    Passbook.createPass(pass)
 
     @transaction.pass_id = pass.id
     @transaction.save
     
-    OrderMailer.order_confirmation(pass).deliver
-    OrderMailer.order_notification(pass).deliver
-    
-    Stripe.api_key = "sk_test_kgL3knoDKf72dGGiBqLC8qpo"
-
-    # get the credit card details submitted by the form
-    token = params[:stripeToken]
-
-    #create the charge on Stripe's servers - this will charge the user's card
-    charge = Stripe::Charge.create(
-      :amount => (@transaction.item.amount * 100).to_i,
-      :currency => "usd",
-      :card => token,
-      :description => "#{@transaction.email} for #{@transaction.item.vendor.name}"
-    )
-    
-    
+    Delayed::Job.enqueue PassCreationJob.new(pass)
+    Delayed::Job.enqueue StripeChargeJob.new(token, @transaction)
+    OrderMailer.delay.order_confirmation(pass)
+    OrderMailer.delay.order_notification(pass)
   end
 end
