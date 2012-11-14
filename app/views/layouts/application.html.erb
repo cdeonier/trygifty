@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Gifty</title>
+	<%= yield(:meta_tags) %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Open+Sans", :media => "all" %>
   <%= javascript_include_tag "application" %>
@@ -10,18 +11,22 @@
 </head>
 <body>
 	
-	<div class="header-outer">
-		<div class="header-inner container row">
-			<div class="brand">
-				<a href="http://www.trygifty.com">
-					<img src="/assets/small-logo.png"/>
-				</a>
+	<% if @mobile %>
+	
+	<% else %>
+		<div class="header-outer">
+			<div class="header-inner container row">
+				<div class="brand">
+					<a href="http://www.trygifty.com">
+						<img src="/assets/small-logo.png"/>
+					</a>
+				</div>
+				<div class="description">Gift Cards for your iPhone</div>
 			</div>
-			<div class="description">Gift Cards for your iPhone</div>
 		</div>
-	</div>
-
-<%= yield %>
+	<% end %>
+	
+	<%= yield %>
 
 </body>
 </html>

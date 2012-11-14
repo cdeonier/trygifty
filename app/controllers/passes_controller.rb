@@ -18,4 +18,30 @@ class PassesController < ApplicationController
     
     redirect_to passes_path
   end
+  
+  def redeem
+    @mobile = true
+    
+    @pass = Pass.find_by_serial_number(params[:serial_number])
+    @charge = @pass.charges.build
+  end
+  
+  def redeem_confirmation
+    @mobile = true
+    
+    @pass = Pass.find_by_serial_number(params[:serial_number])
+    @charge = Charge.new(params[:charge])
+  end
+  
+  def charged
+    @mobile = true
+    
+    @pass = Pass.find_by_serial_number(params[:serial_number])
+    @charge = Charge.new(params[:charge])
+    @charge.pass_id = @pass.id
+    @charge.save
+    
+    @pass.amount = @pass.amount - @charge.amount
+    @pass.save
+  end
 end

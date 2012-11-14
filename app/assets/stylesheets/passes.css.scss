@@ -1,3 +1,61 @@
 // Place all the styles related to the Passes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.mobile {
+	font-family: Helvetica;
+}
+
+.mobile-container {
+	width: 320px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.mobile-header-outer {
+	background: none repeat scroll 0 0 #394755;
+}
+
+.mobile-header-inner {
+	width: 320px;
+	position:relative;
+}
+
+.mobile-header {
+	color: #394755;
+	font-size: 26px;
+	padding: 0px 0px 5px 10px;
+	margin: 10px 0px 0px 0px;
+	border-bottom: 1px solid #EEE;
+}
+
+.mobile-card-info {
+	padding: 30px 10px 10px 10px;
+	font-size: 16px;
+}
+
+.mobile-charge-container {
+	padding: 10px 10px 10px 10px;
+}
+
+.mobile-charge-label {
+	line-height: 30px;
+	font-size: 16px;
+}
+
+.mobile-charge-amount {
+	width: 50px;
+	margin-left: -70px;
+}
+
+.charge-button {
+	margin: 30px auto 0px auto;
+	text-align: center;
+	width: 200px;
+}
+
+.cancel-charge-button {
+	margin: 0px auto 0px auto;
+	text-align: center;
+	width: 200px;
+}

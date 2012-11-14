@@ -2,6 +2,7 @@ class Pass < ActiveRecord::Base
   belongs_to :vendor
   belongs_to :item
   has_one :transaction
+  has_many :charges, :dependent => :destroy
   attr_accessible :amount, :serial_number
   
   before_create :generate_serial_number

@@ -1,0 +1,49 @@
+<% content_for(:meta_tags) do %>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-touch-fullscreen" content="yes" />
+<% end %>
+
+<div class="mobile">
+	<div class="mobile-header-outer">
+		<div class="mobile-header-inner container row">
+			<div class="brand">
+				<a href="http://www.trygifty.com">
+					<img src="/assets/small-logo.png"/>
+				</a>
+			</div>
+			<div class="description">Gift Cards for your iPhone</div>
+		</div>
+	</div>
+
+	<div class="mobile-container">
+		<h1 class="mobile-header">Charge Gift Card</h1>
+	
+		<div class="mobile-card-info">
+			<div class="row">
+				<div class="span3">Remaining Balance:</div>
+				<div class="span1">
+					<div class="mobile-charge-amount"><%= number_to_currency(@pass.amount) %></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="mobile-charge-container">
+			<%= form_for(@charge, :url => redeem_confirmation_path(@pass.serial_number)) do |f| %>
+				<div class="field">
+					<div class="row">
+						<div class="span3">
+							<%= f.label :amount, "Amount to Charge: ", :class => "mobile-charge-label" %>
+						</div>
+						<div class="span1">
+							<%= f.number_field :amount, :step => 0.01, :class => "mobile-charge-amount" %>
+						</div>
+					</div>
+			  </div>
+				<div class="charge-button">
+					<%= button_tag("Charge Gift Card", :class => "btn btn-success") %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+

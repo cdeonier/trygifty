@@ -1,0 +1,31 @@
+<% content_for(:meta_tags) do %>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-touch-fullscreen" content="yes" />
+<% end %>
+
+<div class="mobile">
+	<div class="mobile-header-outer">
+		<div class="mobile-header-inner container row">
+			<div class="brand">
+				<a href="http://www.trygifty.com">
+					<img src="/assets/small-logo.png"/>
+				</a>
+			</div>
+			<div class="description">Gift Cards for your iPhone</div>
+		</div>
+	</div>
+
+	<div class="mobile-container">
+		<h1 class="mobile-header">Gift Card Charged</h1>
+
+		<div class="mobile-card-info">
+			<p><b><%= number_to_currency(@charge.amount) %></b> charged to the gift card.</p>
+			
+			<% if @charge.amount > @pass.amount %>
+				<p><%= number_to_currency(0) %> left to on card.</p>	
+			<% else %>
+				<p>There is <%= number_to_currency(@pass.amount) %> left on the card.</p>
+			<% end %>
+		</div>
+	</div>
+</div>

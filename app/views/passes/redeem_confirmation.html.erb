@@ -1,0 +1,44 @@
+<% content_for(:meta_tags) do %>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-touch-fullscreen" content="yes" />
+<% end %>
+
+<div class="mobile">
+	<div class="mobile-header-outer">
+		<div class="mobile-header-inner container row">
+			<div class="brand">
+				<a href="http://www.trygifty.com">
+					<img src="/assets/small-logo.png"/>
+				</a>
+			</div>
+			<div class="description">Gift Cards for your iPhone</div>
+		</div>
+	</div>
+
+	<div class="mobile-container">
+		<h1 class="mobile-header">Confirm Charge?</h1>
+
+		<div class="mobile-card-info">
+			<p><b><%= number_to_currency(@charge.amount) %></b> will be charged to the gift card.</p>
+			
+			<% if @charge.amount > @pass.amount %>
+				<p>There will be <%= number_to_currency(@charge.amount - @pass.amount) %> still left to charge.</p>	
+			<% else %>
+				<p>There will be <%= number_to_currency(@pass.amount - @charge.amount) %> left on the card.</p>
+			<% end %>
+		</div>
+
+		<div class="mobile-charge-container">
+			<%= form_for(@charge, :url => charged_path(@pass.serial_number)) do |f| %>
+				<%= f.hidden_field :amount %>
+				<div class="charge-button">
+					<%= button_tag("Confirm Charge", :class => "btn btn-success") %>
+				</div>
+			<% end %>
+		</div>
+		
+			<div class="cancel-charge-button">
+				<%= button_to "Cancel Charge", redeem_path(@pass.serial_number), :class => "btn btn-danger", :method => :get %>
+			</div>
+	</div>
+</div>
