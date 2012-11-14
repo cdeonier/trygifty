@@ -1,0 +1,17 @@
+<h1>Listing Devices</h1>
+
+<table>
+  <tr>
+    <th>Device Id</th>
+		<th>Device Push Token</th>
+    <th>Number Passes</th>
+  </tr>
+
+<% @devices.each do |device| %>
+  <tr>
+    <td><%= device.device_library_identifier %></td>
+		<td><%= pass.push_token %></td>
+    <td><%= device.passes.count %></td>
+  </tr>
+<% end %>
+</table>
