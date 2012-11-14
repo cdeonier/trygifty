@@ -20,7 +20,7 @@ Gifty::Application.routes.draw do
   end
   
   #Webservice
-  constraints(:passTypeIdentifier => /[A-Za-z0-9\._\-+]/) do
+  constraints(:passTypeIdentifier => /[A-Za-z0-9\._\-]+/) do
     match 'service/:version/devices/:deviceLibraryIdentifier/registrations/:passTypeIdentifier/:serialNumber' => 'service#register', :via => :post, :as => "register_device"
     match 'service/:version/devices/:deviceLibraryIdentifier/registrations/:passTypeIdentifier/' => 'services#passes', :via => :get, :as => "get_device_passes"
     match 'service/:version/passes/:passTypeIdentifier/:serialNumber' => 'service#update', :via => :get, :as => "update_pass"
