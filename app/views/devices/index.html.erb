@@ -10,7 +10,7 @@
 <% @devices.each do |device| %>
   <tr>
     <td><%= device.device_library_identifier %></td>
-		<td><%= pass.push_token %></td>
+		<td><%= device.push_token %></td>
     <td><%= device.passes.count %></td>
   </tr>
 <% end %>
