@@ -5,6 +5,7 @@
     <th>Vendor Id</th>
 		<th>Item Id</th>
     <th>Serial Number</th>
+		<th>Authentication Token</th>
 		<th>Amount</th>
     <th></th>
   </tr>
@@ -14,6 +15,7 @@
     <td><%= pass.vendor_id %></td>
 		<td><%= pass.item_id %></td>
     <td><%= pass.serial_number %></td>
+		<td><%= pass.authentication_token %></td>
 		<td><%= pass.amount %></td>
     <td><%= link_to 'Destroy', pass, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

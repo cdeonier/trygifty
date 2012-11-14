@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  device_id: 1
+  pass_id: 1
+
+two:
+  device_id: 1
+  pass_id: 1

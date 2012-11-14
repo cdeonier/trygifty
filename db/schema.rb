@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121113013246) do
+ActiveRecord::Schema.define(:version => 20121114062533) do
 
   create_table "charges", :force => true do |t|
     t.integer  "pass_id"
@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(:version => 20121113013246) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
+  create_table "devices", :force => true do |t|
+    t.string   "device_library_identifier"
+    t.string   "push_token"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
   create_table "items", :force => true do |t|
     t.integer  "vendor_id"
     t.decimal  "amount"
@@ -49,12 +56,20 @@ ActiveRecord::Schema.define(:version => 20121113013246) do
     t.integer  "vendor_id"
     t.string   "serial_number"
     t.decimal  "amount"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.integer  "item_id"
+    t.string   "authentication_token"
   end
 
   add_index "passes", ["vendor_id"], :name => "index_passes_on_vendor_id"
+
+  create_table "registrations", :force => true do |t|
+    t.integer  "device_id"
+    t.integer  "pass_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "transactions", :force => true do |t|
     t.integer  "item_id"

@@ -35,9 +35,12 @@ class TransactionsController < ApplicationController
     @transaction.pass_id = pass.id
     @transaction.save
     
-    Delayed::Job.enqueue PassCreationJob.new(pass)
-    Delayed::Job.enqueue StripeChargeJob.new(token, @transaction)
-    OrderMailer.delay.order_confirmation(pass)
-    OrderMailer.delay.order_notification(pass)
+    #remove when using workers
+    Passbook.createPass(pass)
+    
+    #Delayed::Job.enqueue PassCreationJob.new(pass)
+    #Delayed::Job.enqueue StripeChargeJob.new(token, @transaction)
+    #OrderMailer.delay.order_confirmation(pass)
+    #OrderMailer.delay.order_notification(pass)
   end
 end

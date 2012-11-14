@@ -114,8 +114,8 @@ module Passbook
       "passTypeIdentifier" : "pass.com.gifty.storecard",
       "serialNumber" : "' + pass.serial_number.to_s + '",
       "teamIdentifier" : "PM4FU5U68E",
-      "webServiceURL" : "https://example.com/passes/",
-      "authenticationToken" : "vxwxd7J8AlNNFPS8k0a0FfUFtq0ewzFdc",
+      "webServiceURL" : "https://gifty-test.herokuapp.com/service/",
+      "authenticationToken" : "' + pass.authentication_token + '",
       "locations" : [
         {
           "longitude" : ' + vendor.longitude.to_s + ',
@@ -152,7 +152,7 @@ module Passbook
           {
     	      "key" : "redeem_url",
             "label" : "Press to Redeem Card",
-    	      "value" : "http://trygifty.com/cards/' + pass.serial_number + '/redeem"
+    	      "value" : "http://trygifty.com/redeem/' + pass.serial_number + '"
           },
           {
             "key" : "terms",
