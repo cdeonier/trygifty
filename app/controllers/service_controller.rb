@@ -1,56 +1,78 @@
 class ServiceController < ApplicationController
+  respond_to :json
+  
+  #Most code from mattt/passbook_rails_example on github
+  
   def register
-    deviceLibraryIdentifier = params[:deviceLibraryIdentifier]
-    serialNumber = params[:serialNumber]
-    version = params[:version]
+    @pass = Pass.where(:serial_number => params[:serial_number]).first
+    head :not_found and return if @pass.nil?
+    head :unauthorized and return if request.env['HTTP_AUTHORIZATION'] != "ApplePass #{@pass.authentication_token}"
+
+    @device = Device.where(:device_library_identifier => params[:device_library_identifier]).first_or_initialize
+    @device.push_token = params[:pushToken]
+
+    status = @device.new_record? ? :created : :ok
+
+    @device.save
     
-    pass = Pass.find_by_serial_number(serialNumber)
-    
-    if request.authorization && request.authorization.include?(' ')
-      authenticationToken = request.authorization.split(/\s/)[1]
-      if authenticationToken != pass.authentication_token
-        puts "*** SERVICE ***: Bad authentication token \"#{authenticationToken}\""
-        render :status => 401
-      end
-    else
-      render :status => 401
-    end
-    
-    if version == "v1"
-      device = Device.find_by_device_library_identifier(deviceLibraryIdentifier)
-      if device
-        if device.passes.find_by_serial_number(serialNumber)
-          render :status => 200
-        else
-          device.passes << pass
-        end
-        
-        device.save
-      else
-        device = Device.new(:device_library_identifier => deviceLibraryIdentifier)
-      end
-    else
-      puts "*** SERVICE ***: Unknown version \"#{version}\""
-    end
-    
-    json = ActiveSupport::JSON.decode(request.body)
-    device.push_token = json["pushToken"]
-    device.save
-    
-    render :status => 201
+    @registration = Registration.find_by_device_id_and_pass_id(@device.id, @pass.id).first_or_create
+
+    head status
   end
   
   def unregister
+    @pass = Pass.where(serial_number: params[:serial_number]).first
+    head :not_found and return if @pass.nil?
+    head :unauthorized and return if request.env['HTTP_AUTHORIZATION'] != "ApplePass #{@pass.authentication_token}"
+
+    @device = Device.where(:device_library_identifier => params[:device_library_identifier])
+
+    @registration = Registration.find_by_device_id_and_pass_id(@device.id, @pass.id)
+    head :not_found and return if @registration.nil?
+
+    @registration.destroy
+
+    head :ok
   end
   
-  def passes
+  def passes    
+    device = Device.find_by_device_library_identifier(params[:deviceLibraryIdentifier])
+    
+    head :not_found and return if device.passes.empty?
+
+    @passes = device.passes.where('passes.updated_at > ?', params[:passesUpdatedSince]) if params[:passesUpdatedSince]
+
+    if @passes.any?
+      respond_with({
+        lastUpdated: @passes.collect(&:updated_at).max,
+        serialNumbers: @passes.collect(&:serial_number).collect(&:to_s)
+      })
+    else
+      head :no_content
+    end
   end
   
   def update
+    @pass = Pass.where(serial_number: params[:serial_number]).first
+    head :not_found and return if @pass.nil?
+    head :unauthorized and return if request.env['HTTP_AUTHORIZATION'] != "ApplePass #{@pass.authentication_token}"
+
+    if stale?(last_modified: @pass.updated_at.utc)
+      respond_with @pass
+    else
+      head :not_modified
+    end
   end
   
   def log
-    puts "*** SERVICE LOG ***: "
-    render :status => 200
+    log_file = Logger.new("#{Rails.root}/log/apple.log")
+    log_file.info("        **** Web Service Error ****         ")
+    json = ActiveSupport::JSON.decode(request.body)
+    logs = json["logs"]
+    logs.each do |log|
+      log_file.info
+    end
+    
+    head :ok
   end
 end
