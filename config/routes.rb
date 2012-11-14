@@ -18,4 +18,11 @@ Gifty::Application.routes.draw do
   resources :items do
     resources :transaction
   end
+  
+  #Webservice
+  match 'service/:version/devices/:deviceLibraryIdentifier/registrations/:passTypeIdentifier/:serialNumber' => 'service#register', :via => :post, :as => "register_device"
+  match 'service/:version/devices/:deviceLibraryIdentifier/registrations/:passTypeIdentifier/' => 'services#passes', :via => :get, :as => "get_device_passes"
+  match 'service/:version/passes/:passTypeIdentifier/:serialNumber' => 'service#update', :via => :get, :as => "update_pass"
+  match 'service/:version/devices/:deviceLibraryIdentifier/registrations/:passTypeIdentifier/:serialNumber' => 'service#unregister', :via => :delete, :as => "unregister_device"
+  match 'service/:version/log' => 'service#log', :via => :post
 end
