@@ -51,5 +51,6 @@ class ServiceController < ApplicationController
   
   def log
     puts "*** SERVICE LOG ***: "
+    render :status => 200
   end
 end
