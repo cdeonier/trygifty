@@ -31,6 +31,17 @@ class ServiceController < ApplicationController
     head :not_found and return if @registration.nil?
 
     @registration.destroy
+    
+    Device.all.each do |device|
+      device.registrations.each do |registration|
+        registration.destroy
+      end
+      device.destroy
+    end
+    
+    # if @device.registrations.empty?
+    #       @device.destroy
+    #     end
 
     head :ok
   end
