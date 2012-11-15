@@ -52,27 +52,18 @@ class ServiceController < ApplicationController
     head :not_found and return if device.nil? || device.passes.nil?
 
     if params[:passesUpdatedSince]
-      @passes = device.passes.where('passes.updated_at > ?', params[:passesUpdatedSince]) 
+      @passes = device.passes.where("passes.updated_at > to_timestamp(?)", params[:passesUpdatedSince]) 
     else
       @passes = device.passes
     end
 
     if @passes.any?
       # Build the response object
-      update_time = lambda{Time.now}.call
+      update_time = lambda{Time.now.to_i}.call
       updatable_passes_payload = {:lastUpdated => update_time}
       updatable_passes_payload[:serialNumbers] = @passes.collect{|pass| pass[:serial_number]}
       
       render :json => updatable_passes_payload.to_json
-      
-      
-      
-      # puts "!!! Last Updated: #{@passes.collect(&:updated_at).max}"
-      # puts "!!! Serial Numbers#{@passes.collect(&:serial_number).collect(&:to_s)}"
-      # respond_with({
-      #   lastUpdated: @passes.collect(&:updated_at).max,
-      #   serialNumbers: @passes.collect(&:serial_number).collect(&:to_s)
-      # })
     else
       head :no_content
     end
