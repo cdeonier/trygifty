@@ -69,7 +69,15 @@ class ServiceController < ApplicationController
     head :unauthorized and return if request.env['HTTP_AUTHORIZATION'] != "ApplePass #{@pass.authentication_token}"
 
     if stale?(last_modified: @pass.updated_at.utc)
-      respond_with @pass
+      AWS::S3::DEFAULT_HOST.replace "s3-us-west-1.amazonaws.com"
+      AWS::S3::Base.establish_connection!(
+          :access_key_id     => 'AKIAJZORP2CG2ZKHVMJQ',
+          :secret_access_key => 'sK+LaL59L8BWY1beskIGBAaLSrjglJB3fw7Oyc2T')
+
+      vendor = Vendor.find(@pass.vendor_id)
+
+      pkpass = AWS::S3::S3Object.find "passes/#{@pass.vendor.biz_id}/#{@pass.serial_number}.pkpass", "gifty"
+      send_data(pkpass.value)
     else
       head :not_modified
     end
