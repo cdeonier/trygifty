@@ -25,7 +25,7 @@ class ServiceController < ApplicationController
     head :not_found and return if @pass.nil?
     head :unauthorized and return if request.env['HTTP_AUTHORIZATION'] != "ApplePass #{@pass.authentication_token}"
 
-    @device = Device.find_by_device_Library_identifier(params[:deviceLibraryIdentifier])
+    @device = Device.find_by_device_library_identifier(params[:deviceLibraryIdentifier])
 
     @registration = Registration.find_by_device_id_and_pass_id(@device.id, @pass.id)
     head :not_found and return if @registration.nil?
