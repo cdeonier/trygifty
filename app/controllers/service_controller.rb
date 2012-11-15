@@ -59,7 +59,7 @@ class ServiceController < ApplicationController
 
     if @passes.any?
       # Build the response object
-      update_time = lambda{Time.now.to_i}.call
+      update_time = lambda{Time.now.to_i.to_s}.call
       updatable_passes_payload = {:lastUpdated => update_time}
       updatable_passes_payload[:serialNumbers] = @passes.collect{|pass| pass[:serial_number]}
       
