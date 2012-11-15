@@ -50,8 +50,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
-    commander (4.1.2)
-      highline (~> 1.6.11)
     delayed_job (3.0.4)
       activesupport (~> 3.0)
     delayed_job_active_record (0.3.3)
@@ -60,11 +58,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    highline (1.6.15)
     hike (1.2.1)
-    houston (0.1.1)
-      commander (~> 4.1.2)
-      json (~> 1.7.3)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (2.1.3)
@@ -135,7 +129,6 @@ DEPENDENCIES
   bootstrap-sass
   coffee-rails (~> 3.2.1)
   delayed_job_active_record
-  houston
   jquery-rails
   mail
   pg

@@ -1,4 +1,4 @@
-require 'houston'
+require 'apns'
 
 class PassesController < ApplicationController
   def index
@@ -46,20 +46,18 @@ class PassesController < ApplicationController
     @pass.amount = @pass.amount - @charge.amount
     @pass.save
     
-    AWS::S3::DEFAULT_HOST.replace "s3-us-west-1.amazonaws.com"
-    AWS::S3::Base.establish_connection!(
-        :access_key_id     => 'AKIAJZORP2CG2ZKHVMJQ',
-        :secret_access_key => 'sK+LaL59L8BWY1beskIGBAaLSrjglJB3fw7Oyc2T')
-    @signing_cert = AWS::S3::S3Object.find "secure/storecard_cert.pem", "gifty"
-    
-    APN = Houston::Client.development
-    APN.certificate = @signing_cert.value
-    
-    @pass.devices.each do |device|
-      notification = Houston::Notification.new(device: device.push_token)
-      notification.custom_data = {}
-      APN.push(notification)
+    APNS.instance.open_connection()
+    puts "Opening connection to APNS."
+
+    # Get the list of registered devices and send a push notification
+    @push_tokens = @pass.devices.collect {|device| device.push_token}.uniq
+
+    @push_tokens.each do |push_token|
+      puts "Sending a notification to #{push_token}"
+      APNS.instance.deliver(push_token, "{}")
     end
-    
+
+    APNS.instance.close_connection
+    puts "APNS connection closed."
   end
 end

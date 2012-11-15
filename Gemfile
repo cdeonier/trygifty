@@ -12,7 +12,6 @@ gem 'aws-s3', :require => 'aws/s3'
 gem 'rubyzip', :require => 'zip/zip'
 gem 'mail'
 gem 'delayed_job_active_record'
-gem 'houston'
 
 # Gems used only for assets and not required
 # in production environments by default.

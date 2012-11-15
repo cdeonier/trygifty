@@ -1,7 +1,6 @@
 #Delayed_job errors out unless we specifically require-- something about rake not doing eager loading of classes
 require 'pass_creation_job'
 require 'stripe_charge_job'
-require 'houston'
 
 Gifty::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
