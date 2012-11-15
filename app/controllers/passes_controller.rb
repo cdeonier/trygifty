@@ -1,3 +1,5 @@
+require 'houston'
+
 class PassesController < ApplicationController
   def index
     @passes = Pass.all

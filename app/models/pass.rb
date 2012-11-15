@@ -22,18 +22,4 @@ class Pass < ActiveRecord::Base
     end while Pass.where(:authentication_token => token).exists?
     self.authentication_token = token
   end
-  
-  def as_json(options = {})
-    puts "PASS JSON"
-    AWS::S3::DEFAULT_HOST.replace "s3-us-west-1.amazonaws.com"
-    AWS::S3::Base.establish_connection!(
-        :access_key_id     => 'AKIAJZORP2CG2ZKHVMJQ',
-        :secret_access_key => 'sK+LaL59L8BWY1beskIGBAaLSrjglJB3fw7Oyc2T')
-        
-    vendor = Vendor.find(self.vendor_id)
-        
-    pkpass = AWS::S3::S3Object.find "passes/#{self.vendor.biz_id}/#{self.serial_number}.pkpass", "gifty"
-    puts "*** #{pkpass.content_length}"
-    pkpass.value || {}
-  end
 end
