@@ -51,7 +51,11 @@ class ServiceController < ApplicationController
     
     head :not_found and return if device.nil? || device.passes.nil?
 
-    @passes = device.passes.where('passes.updated_at > ?', params[:passesUpdatedSince]) if params[:passesUpdatedSince]
+    if params[:passesUpdatedSince]
+      @passes = device.passes.where('passes.updated_at > ?', params[:passesUpdatedSince]) 
+    else
+      @passes = device.passes
+    end
 
     if @passes.any?
       respond_with({
