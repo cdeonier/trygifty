@@ -58,6 +58,8 @@ class ServiceController < ApplicationController
     end
 
     if @passes.any?
+      puts "!!! Last Updated: #{@passes.collect(&:updated_at).max}"
+      puts "!!! Serial Numbers#{@passes.collect(&:serial_number).collect(&:to_s)}"
       respond_with({
         lastUpdated: @passes.collect(&:updated_at).max,
         serialNumbers: @passes.collect(&:serial_number).collect(&:to_s)
