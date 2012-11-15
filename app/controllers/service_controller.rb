@@ -63,7 +63,7 @@ class ServiceController < ApplicationController
       updatable_passes_payload = {:lastUpdated => update_time}
       updatable_passes_payload[:serialNumbers] = @passes.collect{|pass| pass[:serial_number]}
       
-      updatable_passes_payload.to_json
+      render :json => updatable_passes_payload.to_json
       
       
       
