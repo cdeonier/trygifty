@@ -62,7 +62,7 @@ class PassesController < ApplicationController
     @pass.amount = @pass.amount - @charge.amount
     @pass.save
     
-    APNS.instance.open_connection()
+    APNS.instance.open_connection("production")
     puts "Opening connection to APNS."
 
     # Get the list of registered devices and send a push notification
