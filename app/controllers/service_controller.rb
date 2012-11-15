@@ -4,24 +4,24 @@ class ServiceController < ApplicationController
   #Most code from mattt/passbook_rails_example on github
   
   def register
-    @pass = Pass.find_by_serial_number(params[:serial_number]).first
+    @pass = Pass.find_by_serial_number(params[:serial_number])
     head :not_found and return if @pass.nil?
     head :unauthorized and return if request.env['HTTP_AUTHORIZATION'] != "ApplePass #{@pass.authentication_token}"
 
-    @device = Device.find_by_device_library_identifier(params[:device_library_identifier]).first_or_initialize
+    @device = Device.where(:device_library_identifier => params[:device_library_identifier]).first_or_initialize
     @device.push_token = params[:pushToken]
 
     status = @device.new_record? ? :created : :ok
 
     @device.save
     
-    @registration = Registration.find_by_device_id_and_pass_id(@device.id, @pass.id).first_or_create
+    @registration = Registration.where(:device_id => @device.id, :pass_id => @pass.id).first_or_create
 
     head status
   end
   
   def unregister
-    @pass = Pass.find_by_serial_number(params[:serial_number]).first
+    @pass = Pass.find_by_serial_number(params[:serial_number])
     head :not_found and return if @pass.nil?
     head :unauthorized and return if request.env['HTTP_AUTHORIZATION'] != "ApplePass #{@pass.authentication_token}"
 
@@ -53,7 +53,7 @@ class ServiceController < ApplicationController
   end
   
   def update
-    @pass = Pass.find_by_serial_number(params[:serial_number]).first
+    @pass = Pass.find_by_serial_number(params[:serial_number])
     head :not_found and return if @pass.nil?
     head :unauthorized and return if request.env['HTTP_AUTHORIZATION'] != "ApplePass #{@pass.authentication_token}"
 
