@@ -76,7 +76,7 @@ class PassesController < ApplicationController
     APNS.instance.close_connection
     puts "APNS connection closed."
     
-    Passbook.destroyPass(pass)
-    Passbook.createPass(pass)
+    Passbook.destroyPass(@pass)
+    Passbook.createPass(@pass)
   end
 end
