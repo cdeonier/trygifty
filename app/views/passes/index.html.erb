@@ -7,6 +7,7 @@
     <th>Serial Number</th>
 		<th>Authentication Token</th>
 		<th>Amount</th>
+		<th></th>
     <th></th>
   </tr>
 
@@ -17,6 +18,7 @@
     <td><%= pass.serial_number %></td>
 		<td><%= pass.authentication_token %></td>
 		<td><%= pass.amount %></td>
+		<td><%= link_to 'Edit', edit_pass_path(pass) %></td>
     <td><%= link_to 'Destroy', pass, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>

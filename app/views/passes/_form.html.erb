@@ -1,0 +1,21 @@
+<%= form_for(@pass) do |f| %>
+  <% if @pass.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pass.errors.count, "error") %> prohibited this pass from being saved:</h2>
+
+      <ul>
+      <% @pass.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

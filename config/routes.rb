@@ -10,7 +10,7 @@ Gifty::Application.routes.draw do
   match 'checkout' => 'transactions#checkout', :via => :post, :as => "checkout"
   match 'confirmation' => 'transactions#confirmation', :via => :post, :as => "confirmation"
   
-  resources :passes, :only => [:index, :destroy]
+  resources :passes, :only => [:index, :destroy, :edit, :update]
   match 'redeem/:serial_number' => 'passes#redeem', :via => :get, :as => "redeem"
   match 'redeem_confirmation/:serial_number' => 'passes#redeem_confirmation', :via => :post, :as =>"redeem_confirmation"
   match 'charged/:serial_number' => 'passes#charged', :via => :post, :as => "charged"

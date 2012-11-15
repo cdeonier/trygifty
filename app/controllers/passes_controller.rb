@@ -21,6 +21,22 @@ class PassesController < ApplicationController
     redirect_to passes_path
   end
   
+  def edit
+    @pass = Pass.find(params[:id])
+  end
+  
+  def update
+    @pass = Pass.find(params[:id])
+
+    respond_to do |format|
+      if @pass.update_attributes(params[:pass])
+        format.html { redirect_to passes_path, notice: 'Vendor was successfully updated.' }
+      else
+        format.html { render action: "edit" }
+      end
+    end
+  end
+  
   def redeem
     @mobile = true
     
@@ -59,5 +75,8 @@ class PassesController < ApplicationController
 
     APNS.instance.close_connection
     puts "APNS connection closed."
+    
+    Passbook.destroyPass(pass)
+    Passbook.createPass(pass)
   end
 end

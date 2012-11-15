@@ -49,7 +49,7 @@ class ServiceController < ApplicationController
   def passes    
     device = Device.find_by_device_library_identifier(params[:deviceLibraryIdentifier])
     
-    head :not_found and return if device.passes.nil?
+    head :not_found and return if device.nil? || device.passes.nil?
 
     @passes = device.passes.where('passes.updated_at > ?', params[:passesUpdatedSince]) if params[:passesUpdatedSince]
 
