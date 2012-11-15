@@ -76,12 +76,10 @@ class ServiceController < ApplicationController
   end
   
   def log
-    log_file = Logger.new("#{Rails.root}/log/apple.log")
-    log_file.info("        **** Web Service Error ****         ")
     json = ActiveSupport::JSON.decode(request.body)
     logs = json["logs"]
     logs.each do |log|
-      log_file.info
+      puts log
     end
     
     head :ok
