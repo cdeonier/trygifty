@@ -2,6 +2,8 @@ require 'pass_creation_job'
 require 'stripe_charge_job'
 
 class TransactionsController < ApplicationController
+  http_basic_authenticate_with :name => "gifty-admin", :password => "daikon8chili!", :only => [:index, :destroy]
+  
   def index
     @transactions = Transaction.all
   end

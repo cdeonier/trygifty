@@ -1,6 +1,8 @@
 require 'apns'
 
 class PassesController < ApplicationController
+  http_basic_authenticate_with :name => "gifty-admin", :password => "daikon8chili!", :only => [:index, :destroy, :edit, :update]
+  
   def index
     @passes = Pass.all
   end

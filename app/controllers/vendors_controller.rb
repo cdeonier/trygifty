@@ -1,4 +1,6 @@
 class VendorsController < ApplicationController
+  http_basic_authenticate_with :name => "gifty-admin", :password => "daikon8chili!", :only => [:index, :destroy, :edit, :update, :create, :new, :show]
+  
   def index
     @vendors = Vendor.all
   end
